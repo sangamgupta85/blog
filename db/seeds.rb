@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+1000.times do
+	Post.create(title: "Math", description: "numbers 0-9 can hold entire earth")
+	Post.create(title: "Chemistry", description: "Organic Chemistry is the best of all Chemistry")
+	Post.create(title: "English", description: "I love reading poetries")
+end

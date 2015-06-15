@@ -2,9 +2,13 @@
 
 <div>
 
-<%= form_tag('/posts') do %>
-<%= text_field_tag 'search' %>
-<%= submit_tag 'search' %>
+<%= form_tag '/posts', method: :get do %>
+
+<p>
+<%= text_field_tag 'query', params[:query]  %>
+<%= submit_tag 'search', name: nil %>
+</p>
+
 <% end %>
 
 </div>
