@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
   		rank = <<-RANK
   			ts_rank(to_tsvector(title), plainto_tsquery(#{sanitize(query)}))
   		RANK
-  		where("title @@ :query or description @@ :query", query: query).order("#{rank} desc")
+  		where("to_tsvector('english', title) @@ :query or to_tsvector('english', description) @@ :query", query: query).order("#{rank} desc")
     else
     	scoped
     end
