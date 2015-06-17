@@ -1,6 +1,10 @@
 Blog::Application.routes.draw do
-  resources :posts
-  root to: "posts#index"
+
+  scope "api" do
+    resources :posts
+  end
+
+  root to: "main#index"
 
 
   # The priority is based upon order of creation:
