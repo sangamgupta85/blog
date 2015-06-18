@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.includes(:comments).text_search(params[:query])
+    @posts = Post.includes(:comments).text_search(params[:query]).paginate(page: params[:page], per_page: 20)
 
     respond_to do |format|
       format.html # index.html.erb
