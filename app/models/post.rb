@@ -13,7 +13,8 @@ class Post < ActiveRecord::Base
   	if query.present?
   		# search(query)
   		rank = <<-RANK
-  			ts_rank(to_tsvector(title), plainto_tsquery(#{sanitize(query)}))
+  			ts_rank(to_tsvector(title), plainto_tsquery(#{sanitize(query)})) +
+        ts_rank(to_tsvector(description), plainto_tsquery(#{sanitize(query)}))
   		RANK
   		where("to_tsvector('english', title) @@ :query or to_tsvector('english', description) @@ :query", query: query).order("#{rank} desc")
     else
