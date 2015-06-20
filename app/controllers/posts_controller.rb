@@ -2,10 +2,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.includes(:comments).text_search(params[:query]).paginate(page: params[:page], per_page: 20)
+    @posts = Post.includes(:comments)
+      .text_search(params[:query])
+        .paginate(page: params[:page], per_page: 15)
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js
       format.json { render json: @posts }
     end
   end
