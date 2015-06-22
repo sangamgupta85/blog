@@ -24,8 +24,9 @@
 
   <tr></tr><tr></tr><tr></tr>
 
-  <div id="posts"><%= render partial: 'posts' %></div>
-
+<% @posts.each do |post| %>
+  <%= render partial: post %>
+<% end %>
 
 </table>
 
