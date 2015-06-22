@@ -22,7 +22,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'rack-mini-profiler'
+# gem 'rack-mini-profiler'
 gem 'pg_search'
 gem 'will_paginate', '~> 3.0.6'
 

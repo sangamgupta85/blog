@@ -18,10 +18,13 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @post }
+    if stale? etag: @post
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @post }
+      end
     end
+    
   end
 
   # GET /posts/new
