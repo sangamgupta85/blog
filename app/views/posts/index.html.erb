@@ -13,7 +13,7 @@
 
 </div>
 
-<table>
+<table id="posts">
   <tr>
     <th>Title</th>
     <th>Description</th>
@@ -24,9 +24,7 @@
 
   <tr></tr><tr></tr><tr></tr>
 
-<% @posts.each do |post| %>
-  <%= render partial: post %>
-<% end %>
+<%= render partial: 'posts' %>
 
 </table>
 
