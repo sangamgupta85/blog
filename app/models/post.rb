@@ -5,28 +5,28 @@ class Post < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
 
-  include PgSearch
+  # include PgSearch
   
-  pg_search_scope :search, :against => [:title, :description],
-  	using: {tsearch: {dictionary: "english"}},
-  	ignoring: :accents
+  # pg_search_scope :search, :against => [:title, :description],
+  # 	using: {tsearch: {dictionary: "english"}},
+  # 	ignoring: :accents
 
-  def self.text_search(query)
-  	if query.present?
-      #search using pg search
-  		# search(query) 
+  # def self.text_search(query)
+  # 	if query.present?
+  #     #search using pg search
+  # 		# search(query) 
 
-      #search using custom method
-  		rank = <<-RANK
-  			ts_rank(to_tsvector(comments.content), plainto_tsquery(#{sanitize(query)}))
-  		RANK
-  		where("to_tsvector('english', title) @@ plainto_tsquery(:query)
-       or to_tsvector('english', description) @@ plainto_tsquery(:query)
-       or to_tsvector('english', comments.content) @@ plainto_tsquery(:query)", query: query)
-        .order("#{rank} desc")
-    else
-    	scoped
-    end
-  end
+  #     #search using custom method
+  # 		rank = <<-RANK
+  # 			ts_rank(to_tsvector(comments.content), plainto_tsquery(#{sanitize(query)}))
+  # 		RANK
+  # 		where("to_tsvector('english', title) @@ plainto_tsquery(:query)
+  #      or to_tsvector('english', description) @@ plainto_tsquery(:query)
+  #      or to_tsvector('english', comments.content) @@ plainto_tsquery(:query)", query: query)
+  #       .order("#{rank} desc")
+  #   else
+  #   	scoped
+  #   end
+  # end
 
 end
