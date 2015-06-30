@@ -6,6 +6,8 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'mysql2', '~> 0.3.18', :platform => :ruby
+gem 'thinking-sphinx', '~> 3.1.4'
 
 
 # Gems used only for assets and not required
