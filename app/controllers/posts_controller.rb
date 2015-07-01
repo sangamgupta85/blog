@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     #   .text_search(params[:query])
     #     .paginate(page: params[:page], per_page: 15)
 
-    @posts = Post.search(params[:query], :ranker => :proximity, :match_mode => :any)
+    @posts = Post.search(params[:query], star: true, page: params[:page], per_page: 15)
 
     respond_to do |format|
       format.html # index.html.erb
